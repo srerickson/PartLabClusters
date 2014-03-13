@@ -2,6 +2,9 @@
 
 library(ape)
 library(cluster) 
+library(e1071)
+
+
 
 title <- "Hierarchical Clusters (ward method)"
 
@@ -38,6 +41,13 @@ title <- "K-Means Clusters (k=4)"
 mydata.fit <- kmeans(mydata, 4)
 print(mydata.fit)
 pdf(file='clusters-kmeans-4.pdf', height=8, width=11, onefile=TRUE, family='Helvetica', paper='letter', pointsize=10)
+clusplot(mydata, mydata.fit$cluster, color=TRUE, shade=FALSE, labels=2, lines=0, cex=0.5, main = title)
+
+
+title <- "Fuzzy C-Means Clustering (c=3)"
+mydata.fit <- cmeans(mydata, 3, 50, method="cmeans")
+print(mydata.fit)
+pdf(file='clusters-cmeans-3.pdf', height=8, width=11, onefile=TRUE, family='Helvetica', paper='letter', pointsize=10)
 clusplot(mydata, mydata.fit$cluster, color=TRUE, shade=FALSE, labels=2, lines=0, cex=0.5, main = title)
 
 
