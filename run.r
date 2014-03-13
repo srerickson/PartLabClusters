@@ -1,7 +1,7 @@
 #!/usr/local/bin/Rscript
 
 library(ape)
-#library(cluster) 
+library(cluster) 
 
 title <- "Hierarchical Clusters (ward method)"
 
