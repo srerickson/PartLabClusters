@@ -44,11 +44,20 @@ pdf(file='clusters-kmeans-4.pdf', height=8, width=11, onefile=TRUE, family='Helv
 clusplot(mydata, mydata.fit$cluster, color=TRUE, shade=FALSE, labels=2, lines=0, cex=0.5, main = title)
 
 
+title <- "Fuzzy C-Means Clustering (c=2)"
+mydata.fit <- cmeans(mydata, 2, 50, method="cmeans")
+print(mydata.fit)
+write.csv(mydata.fit$membership,file="c-means-2-memberships.csv")
+write.csv(mydata.fit$centers,file="c-means-2-centers.csv")
+pdf(file='clusters-cmeans-2.pdf', height=8, width=11, onefile=TRUE, family='Helvetica', paper='letter', pointsize=10)
+clusplot(mydata, mydata.fit$cluster, color=TRUE, shade=FALSE, labels=2, lines=0, cex=0.5, main = title)
+
+
 title <- "Fuzzy C-Means Clustering (c=3)"
 mydata.fit <- cmeans(mydata, 3, 50, method="cmeans")
 print(mydata.fit)
-write.csv(mydata.fit$membership,file="c-means-memberships.csv")
-write.csv(mydata.fit$centers,file="c-means-centers.csv")
+write.csv(mydata.fit$membership,file="c-means-3-memberships.csv")
+write.csv(mydata.fit$centers,file="c-means-3-centers.csv")
 pdf(file='clusters-cmeans-3.pdf', height=8, width=11, onefile=TRUE, family='Helvetica', paper='letter', pointsize=10)
 clusplot(mydata, mydata.fit$cluster, color=TRUE, shade=FALSE, labels=2, lines=0, cex=0.5, main = title)
 
