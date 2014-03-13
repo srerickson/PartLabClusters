@@ -8,7 +8,7 @@ library(e1071)
 
 title <- "Hierarchical Clusters (ward method)"
 
-mydata <- read.csv('./scores-main.csv',header=TRUE,stringsAsFactors=FALSE)
+mydata <- read.csv('./input_data/scores-main.csv',header=TRUE,stringsAsFactors=FALSE)
 
 mydata.dist <- dist(mydata,method = "euclidean")
 
@@ -47,6 +47,8 @@ clusplot(mydata, mydata.fit$cluster, color=TRUE, shade=FALSE, labels=2, lines=0,
 title <- "Fuzzy C-Means Clustering (c=3)"
 mydata.fit <- cmeans(mydata, 3, 50, method="cmeans")
 print(mydata.fit)
+write.csv(mydata.fit$membership,file="c-means-memberships.csv")
+write.csv(mydata.fit$centers,file="c-means-centers.csv")
 pdf(file='clusters-cmeans-3.pdf', height=8, width=11, onefile=TRUE, family='Helvetica', paper='letter', pointsize=10)
 clusplot(mydata, mydata.fit$cluster, color=TRUE, shade=FALSE, labels=2, lines=0, cex=0.5, main = title)
 
