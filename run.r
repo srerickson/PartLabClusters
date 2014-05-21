@@ -10,6 +10,20 @@ title <- "Hierarchical Clusters (ward method)"
 
 mydata <- read.csv('./input_data/scores-main.csv',header=TRUE,stringsAsFactors=FALSE)
 
+
+# Customize the fields to use in clustering
+
+# Use all questions
+#keeps <- c('education','goals','_direct_repair','resources','_ind_coll','exit','voice','metrics','communication')
+
+# Use just main questions
+#keeps <- c('education','goals','resources','exit','voice','metrics','communication')
+
+# Custom questions
+keeps <- c('education','goals','resources','voice','metrics')
+
+mydata <- mydata[,keeps,drop=FALSE]
+
 mydata.dist <- dist(mydata,method = "euclidean")
 
 mydata.fit <- hclust(mydata.dist, method="ward")
